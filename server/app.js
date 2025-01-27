@@ -1,7 +1,18 @@
-import express from 'express'
+import express from 'express';
+import Movie from '../models/Movie.js';
 
-const app = express()
+const app = express();
 
-// TODO: add your endpoints here
+app.get("/", async () => {
+const films = await Movie.findAll();
+console.log('Movies done?', films);
+} )
 
-export default app
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
+export default app;
+
